@@ -1,0 +1,85 @@
+{
+  "paths": {
+    "project_root": "/path/to/crispron-BE",
+    "work_dir": "${project_root}/res/LDpred_BE_reproduction_20261020/run01",
+    "raw_zip": "${project_root}/data/ABE8e_short_sgRNA/outcome_raw/truncated sgRNA.zip",
+    "af3_results": "${project_root}/data/ABE8e_short_sgRNA/af3_target_zips/primary",
+    "af3_submitted_json": "",
+    "upstream_root": "${project_root}",
+    "pretrained_root": "${project_root}/data/CRISPRonBE_models/ABE",
+    "reference_runs": [
+      "${project_root}/res/crispron_be_final_20261018/run01",
+      "${project_root}/res/crispron_be_final_20261018/run02"
+    ],
+    "reference_deployment": "${project_root}/res/crispron_be_deployment_20261019/run01"
+  },
+  "execution": {
+    "backend": "slurm",
+    "activate_conda": true,
+    "module": "miniconda3/base",
+    "conda_env": "crispronbe",
+    "partition": "YOUR_PARTITION",
+    "account": "YOUR_ACCOUNT",
+    "cpus_per_task": 2,
+    "memory": "16G",
+    "time": "",
+    "concurrency": {
+      "distance": 36,
+      "length": 50,
+      "delta": 75,
+      "transfer": 12,
+      "deployment": 50
+    }
+  },
+  "runtime": {
+    "cuda_visible_devices": "-1",
+    "omp_threads": 2,
+    "blas_threads": 2,
+    "tf_intra_threads": 2,
+    "tf_inter_threads": 1
+  },
+  "training": {
+    "seed": 42,
+    "epochs": 2000,
+    "patience": 100,
+    "batch_size": 16,
+    "learning_rate": 0.0001,
+    "bottleneck": 4
+  },
+  "transfer": {
+    "penalties": [
+      0.001,
+      0.01,
+      0.1,
+      1.0
+    ]
+  },
+  "af3": {
+    "batch_size": 6
+  },
+  "comparison": {
+    "enabled": true,
+    "numeric_atol": 0.0,
+    "roundtrip_atol_pp": 0.001
+  },
+  "figures": {
+    "model_name": "LDpred-BE",
+    "dpi": 240,
+    "main_size_inches": [
+      16.8,
+      18.2
+    ],
+    "supplement_size_inches": [
+      16.8,
+      11.6
+    ],
+    "symlog_linthresh_pp2": 10,
+    "symlog_ylim_pp2": [
+      -1000,
+      1000
+    ],
+    "font_family": "Helvetica",
+    "min_font_size": 12,
+    "font_dir": ""
+  }
+}

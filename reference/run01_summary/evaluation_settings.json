@@ -1,0 +1,20 @@
+{
+  "editors": [
+    "ABE8e",
+    "D699"
+  ],
+  "candidates": [
+    "original",
+    "length",
+    "single_delta_nearest",
+    "delta_nearest"
+  ],
+  "n_members": 25,
+  "n_folds": 12,
+  "ensemble": "mean both raw outputs before postprocessing",
+  "correlation": "two-output R_2/rho_2; not R-squared",
+  "mse": "bounded outcome and position frequencies in pp²",
+  "n_outcomes_per_editor": 984,
+  "n_positions_per_editor": 159,
+  "window": "positions 3-10"
+}

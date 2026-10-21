@@ -1,0 +1,13 @@
+{
+  "complete_runs": true,
+  "n_files": 7070,
+  "identical_values": true,
+  "within_atol": true,
+  "atol": 0,
+  "rtol": 0,
+  "n_different_files": 0,
+  "max_abs_numeric_difference": 0.0,
+  "ignored": "NPZ container timestamps; log timestamps; environment host and CPU names",
+  "left": "/public/home/GENE_proc/wth/crispron-BE/res/crispron_be_final_20261018/run01",
+  "right": "/public/home/GENE_proc/wth/crispron-BE/res/crispron_be_final_20261018/run02"
+}

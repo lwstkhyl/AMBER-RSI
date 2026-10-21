@@ -1,0 +1,72 @@
+{
+  "original_PDF_audit": [
+    {
+      "file": "Fig1_LDpred-BE.pdf",
+      "sha256": "606d7f102a3bcc23204921e30f44767f5423b8891e0339ed7addbb83d2fd83d9",
+      "font_families": [
+        "DejaVuSans",
+        "DejaVuSans-Bold"
+      ],
+      "minimum_size_pt": 7.699999809265137,
+      "width_cm": 42.67199913872613,
+      "height_cm": 46.22800086127387
+    },
+    {
+      "file": "FigS1_LDpred-BE.pdf",
+      "sha256": "e77ada6b82fbf6eb2933881f739d4db347563488faffbb0b58a7d4fd3cab653b",
+      "font_families": [
+        "DejaVuSans",
+        "DejaVuSans-Bold"
+      ],
+      "minimum_size_pt": 10.0,
+      "width_cm": 42.67199913872613,
+      "height_cm": 29.464000430636936
+    }
+  ],
+  "new_script_python_syntax_passed": true,
+  "missing_Helvetica_explicit_error_guard_passed": true,
+  "actual_Helvetica_available": false,
+  "actual_Helvetica_PDF_not_generated": true,
+  "surrogate_layout_QA": {
+    "font": "DejaVu Sans",
+    "is_Helvetica_result": false,
+    "main_and_transfer_inputs": "actual verified run01 data",
+    "structure_and_observed_tables": "supplied legacy plotting archive; layout QA only",
+    "pdf_measurements": [
+      {
+        "figure": "Fig1_LDpred-BE.pdf",
+        "minimum_measured_pt": 11.999999046325684,
+        "fonts": [
+          "DejaVuSans",
+          "DejaVuSans-Bold"
+        ]
+      },
+      {
+        "figure": "FigS1_LDpred-BE.pdf",
+        "minimum_measured_pt": 12.0,
+        "fonts": [
+          "DejaVuSans",
+          "DejaVuSans-Bold"
+        ]
+      }
+    ],
+    "layout_warnings": [],
+    "main_metrics_checked": 32,
+    "max_main_metric_change": 0.0
+  },
+  "gitignore_rules": {
+    "kept_paths_checked": 11,
+    "ignored_paths_checked": 12,
+    "all_passed": true
+  },
+  "model_training_changed": false,
+  "verified_server_code_or_outputs_modified": false,
+  "final_paper_width_still_requires_confirmation": true,
+  "public_repository_controller_tests": {
+    "passed": 6,
+    "failed": 0,
+    "command": "bash run.sh test",
+    "Slurm_resource_assertions_follow_config": true
+  },
+  "scientific_core_files_byte_identical": 13
+}

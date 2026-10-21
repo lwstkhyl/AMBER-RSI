@@ -1,0 +1,10 @@
+{
+  "complete_runs": true,
+  "identical_values": true,
+  "n_files": 404,
+  "n_different_files": 0,
+  "atol": 0,
+  "rtol": 0,
+  "max_abs_numeric_difference": 0.0,
+  "ignored": "NPZ container timestamps; log timestamps; worker host and CPU names"
+}

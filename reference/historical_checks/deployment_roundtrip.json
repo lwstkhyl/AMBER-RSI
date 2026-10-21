@@ -1,0 +1,44 @@
+{
+  "purpose": "implementation audit; training inputs are not held-out tests",
+  "code": "/public/home/GENE_proc/wth/crispron-BE/crispron_be_deployment_20261019",
+  "run": "/public/home/GENE_proc/wth/crispron-BE/res/crispron_be_deployment_20261019/run01",
+  "seed": 42,
+  "raw_atol_pp": 0.001,
+  "raw_rtol": 0,
+  "note": "Small floating-point differences may arise from condition-wise versus full-table inference batches.",
+  "editors": {
+    "ABE8e": {
+      "n_members": 25,
+      "n_train_targets": 12,
+      "scalers_and_epoch_counts_valid": true,
+      "L20_delta_zero": true,
+      "inference_without_true_labels": true,
+      "n_outcomes": 984,
+      "n_conditions": 36,
+      "raw_roundtrip_pass": true,
+      "raw_identical_values": false,
+      "raw_max_abs_difference_pp": 1.129150389544975e-05,
+      "bounded_frequencies_valid": true,
+      "min_nonempty_frequency_sum_pp": 28.66239682227373,
+      "max_nonempty_frequency_sum_pp": 100.00000000000001,
+      "paper_normalization_ok": true
+    },
+    "D699": {
+      "n_members": 25,
+      "n_train_targets": 12,
+      "scalers_and_epoch_counts_valid": true,
+      "L20_delta_zero": true,
+      "inference_without_true_labels": true,
+      "n_outcomes": 984,
+      "n_conditions": 36,
+      "raw_roundtrip_pass": true,
+      "raw_identical_values": false,
+      "raw_max_abs_difference_pp": 9.765625009094947e-06,
+      "bounded_frequencies_valid": true,
+      "min_nonempty_frequency_sum_pp": 16.412601303458214,
+      "max_nonempty_frequency_sum_pp": 100.00000000000001,
+      "paper_normalization_ok": true
+    }
+  },
+  "all_passed": true
+}
