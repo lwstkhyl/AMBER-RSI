@@ -83,3 +83,11 @@ Thumbs.db
 
 # Keep tests/, deployment/ source, reference/scientific_core_sha256.json,
 # small reference tables, documentation, and selected docs/figures/*.pdf.
+
+# Local, one-off documentation and maintainer notes
+/docs/CHECKS.json
+/docs/FONT_AUDIT.md
+/docs/GITHUB_UPLOAD.md
+/READMEforme.md
+/MAINTAINER_NOTES.zh-CN.md
+/local_notes/
