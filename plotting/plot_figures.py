@@ -115,7 +115,7 @@ if args.figure in ['all', 'main']:
     positions = read_table('main_positions')
     targets = read_table('main_targets')
     fig = plt.figure(figsize=config['main_size_inches'], dpi=dpi, facecolor='white')
-    for label, y in [('a', .997), ('b', .799), ('c', .547), ('d', .202)]:
+    for label, y in [('A', .997), ('B', .799), ('C', .547), ('D', .202)]:
         fig.text(.014, y, label, fontsize=21, fontweight='bold', va='top')
     fig.text(.068, .991, f'{model_name}: a length- and distance-aware post-training framework', fontsize=13.2, va='top')
     # Main a: add adapters to Dense2 preactivation; the source network is frozen.
@@ -266,7 +266,7 @@ if args.figure in ['all', 'supp']:
     transfer_curves = read_table('transfer_curves')
     transfer_lengths = read_table('transfer_by_length')
     fig = plt.figure(figsize=config['supplement_size_inches'], dpi=dpi, facecolor='white')
-    for label, x, y in [('a', .028, .982), ('b', .028, .658), ('c', .028, .337), ('d', .325, .337)]:
+    for label, x, y in [('A', .028, .982), ('B', .028, .658), ('C', .028, .337), ('D', .325, .337)]:
         fig.text(x, y, label, fontsize=21, fontweight='bold', va='top')
     # Supplement a: mean ± SD across targets, using the distances already supplied.
     structure_rows = []
