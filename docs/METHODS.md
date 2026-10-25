@@ -1,8 +1,8 @@
-# Methods and implementation
+# RLDpred-BE: methods and implementation
 
 [English README](../README.md) | [中文README](../README.zh-CN.md) | [Input formats](DATA.md)
 
-This document specifies the implemented analysis. File paths below refer to source files in the repository, not to a particular author's filesystem or archived execution.
+RLDpred-BE is an sgRNA length- and structural distance-aware post-training framework for predicting the editing efficiency of specific base editors. This document specifies the implemented analysis. File paths below refer to source files in the repository, not to a particular author's filesystem or archived execution.
 
 ## Coordinates and labels
 

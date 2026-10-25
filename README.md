@@ -1,8 +1,8 @@
-# LDpred-BE
+# RLDpred-BE
 
 **English** | [简体中文](README.zh-CN.md)
 
-LDpred-BE is a length- and distance-aware adaptation of CRISPRon-ABE for predicting base-editing efficiency and A-to-G outcome frequencies. It adds trainable residual branches to frozen pretrained networks and evaluates ABE8e and D699 using target-level cross-validation. A separate regression workflow transfers source-model activities to TeABE position-level editing efficiencies.
+RLDpred-BE is an sgRNA length- and structural distance-aware post-training framework for predicting the editing efficiency of specific base editors. Built on CRISPRon-ABE, it adds trainable residual branches to frozen pretrained networks to predict editing efficiency and A-to-G outcome frequencies, and evaluates ABE8e and D699 using target-level cross-validation. A separate regression workflow transfers source-model activities to TeABE position-level editing efficiencies.
 
 This repository provides AF3 request preparation, distance extraction from existing AF3 results, model training and evaluation, PDF figure generation, and full-data model fitting and verification.
 
@@ -20,7 +20,7 @@ Run the following from the repository root:
 
 ```bash
 conda env create -f environment.yml
-conda activate ldpred-be
+conda activate rldpred-be
 cp config.example.json config.json
 ```
 
@@ -28,7 +28,7 @@ The environment file installs this project's Python dependencies. Install and te
 
 ## Data and pretrained models
 
-Full reproduction requires the experiment's aligned allele-count archive (`truncated sgRNA.zip`), 36 matching AF3 result ZIPs, and the upstream pretrained models. Optional historical comparisons additionally require complete reference runs. These large assets are not bundled with the source code, and this pipeline does not download them automatically. Public accessions for the experiment-specific archive, AF3 results and fitted LDpred-BE adapters are not supplied in this documentation release.
+Full reproduction requires the experiment's aligned allele-count archive (`truncated sgRNA.zip`), 36 matching AF3 result ZIPs, and the upstream pretrained models. Optional historical comparisons additionally require complete reference runs. These large assets are not bundled with the source code, and this pipeline does not download them automatically. Public accessions for the experiment-specific archive, AF3 results and fitted RLDpred-BE adapters are not supplied in this documentation release.
 
 See [Data and input formats](docs/DATA.md) for required files, AF3 layouts, prediction input columns and dataset restrictions. The training data loader is specific to the 12-target experiment; applying it to another training dataset requires adapting its manifest and dataset checks.
 
@@ -48,7 +48,7 @@ Edit `config.json` before running the pipeline:
 | `training` | Seed, optimizer settings, epochs and residual bottleneck width |
 | `comparison.enabled` | Enable comparisons against complete historical runs |
 
-For the environment created above, set `execution.conda_env` to `ldpred-be`. Set `execution.module` to an empty string if your cluster does not use environment modules. If you activate the environment yourself and do not need activation inside jobs, set `execution.activate_conda` to `false`.
+For the environment created above, set `execution.conda_env` to `rldpred-be`. Set `execution.module` to an empty string if your cluster does not use environment modules. If you activate the environment yourself and do not need activation inside jobs, set `execution.activate_conda` to `false`.
 
 For Slurm, replace the template's partition/account placeholders and adjust CPU, memory and array concurrency settings to your cluster's limits.
 
@@ -121,6 +121,17 @@ python plotting/plot_figures.py \
 ```
 
 If model or canvas parameters differ from the template, pass that run's configuration instead. Both scripts use uppercase panel labels A–D. See [Plotting](docs/PLOTTING.md) for Helvetica setup, input tables, individual figures and output paths. The unified pipeline calls `plot_figures.py`; it does not select another script based on the configured font family.
+
+To redraw an existing run with the RLDpred-BE name and Helvetica, use:
+
+```bash
+bash plotting/replot_helvetica.sh \
+  /absolute/path/output/run01 \
+  /absolute/path/output/RLDpred_BE_figures_helvetica \
+  /absolute/path/to/Helvetica_fonts
+```
+
+This reads the run's `config.snapshot.json`, sets the new name and Helvetica in a separate plotting configuration, and writes `Fig1_RLDpred-BE.pdf` and `FigS1_RLDpred-BE.pdf` under the new output's `figures/`. See the [server commands](docs/REPLOT_HELVETICA.zh-CN.md) for the paths recorded in this project.
 
 ## Full-data models and prediction
 

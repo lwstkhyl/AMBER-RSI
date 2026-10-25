@@ -1,4 +1,4 @@
-# Data and input formats
+# RLDpred-BE: data and input formats
 
 [English README](../README.md) | [中文README](../README.zh-CN.md)
 

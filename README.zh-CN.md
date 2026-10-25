@@ -1,8 +1,10 @@
-# LDpred-BE
+# RLDpred-BE
 
 [English](README.md) | **简体中文**
 
-LDpred-BE在冻结的CRISPRon-ABE预训练网络上增加长度和距离残差分支，用于预测碱基编辑效率及A→G产物频率。主分析对ABE8e和D699进行按target划分的交叉验证；独立的回归流程将源模型活性迁移至TeABE的位点编辑效率预测。
+RLDpred-BE（an sgRNA length- and structural distance-aware post-training framework for predicting the editing efficiency of specific base editors）是一个感知sgRNA长度和结构距离、用于预测特定碱基编辑器编辑效率的后训练框架。
+
+RLDpred-BE在冻结的CRISPRon-ABE预训练网络上增加长度和结构距离残差分支，预测编辑效率及A→G产物频率。主分析对ABE8e和D699进行按target划分的交叉验证；独立的回归流程将源模型活性迁移至TeABE的位点编辑效率预测。
 
 本项目提供AF3请求准备、已有AF3结果的距离提取、模型训练与评价、PDF绘图，以及全数据模型拟合和验证。
 
@@ -20,7 +22,7 @@ LDpred-BE在冻结的CRISPRon-ABE预训练网络上增加长度和距离残差�
 
 ```bash
 conda env create -f environment.yml
-conda activate ldpred-be
+conda activate rldpred-be
 cp config.example.json config.json
 ```
 
@@ -28,7 +30,7 @@ cp config.example.json config.json
 
 ## 数据与预训练模型
 
-完整复现需要本实验的已比对等位序列计数归档`truncated sgRNA.zip`、36个匹配的AF3结果ZIP，以及上游预训练模型。可选的历史结果比较还需要完整参考运行。这些大文件不随源码分发，流程也不会自动下载。本次文档发布尚未提供实验归档、AF3结果及已拟合LDpred-BE残差权重的公开下载编号。
+完整复现需要本实验的已比对等位序列计数归档`truncated sgRNA.zip`、36个匹配的AF3结果ZIP，以及上游预训练模型。可选的历史结果比较还需要完整参考运行。这些大文件不随源码分发，流程也不会自动下载。本次文档发布尚未提供实验归档、AF3结果及已拟合RLDpred-BE残差权重的公开下载编号。
 
 文件要求、AF3布局、预测输入列和数据集限制见[数据与输入格式](docs/DATA.md)。训练数据读取器针对本实验的12个target编写；用于其他训练数据集时，需要相应修改manifest和数据检查规则。
 
@@ -48,7 +50,7 @@ cp config.example.json config.json
 | `training` | 随机种子、优化器参数、训练轮数和残差瓶颈宽度 |
 | `comparison.enabled` | 是否与完整历史运行比较 |
 
-使用上面新建的环境时，将`execution.conda_env`设为`ldpred-be`。集群不使用module时，将`execution.module`留空。若已自行激活环境且任务内无需切换，将`execution.activate_conda`设为`false`。
+使用上面新建的环境时，将`execution.conda_env`设为`rldpred-be`。集群不使用module时，将`execution.module`留空。若已自行激活环境且任务内无需切换，将`execution.activate_conda`设为`false`。
 
 使用Slurm时，替换模板中的分区和账户占位值，并根据集群限制调整CPU、内存和数组任务并发数。
 
@@ -121,6 +123,17 @@ python plotting/plot_figures.py \
 ```
 
 如果模型或画布参数与模板不同，应传入该次运行的配置。两版子图标号均为大写A–D。Helvetica设置、输入表、单图输出和结果位置见[绘图说明](docs/PLOTTING.md)。统一入口固定调用`plot_figures.py`，不会依据字体配置自动选择其他脚本。
+
+将已有结果重画为RLDpred-BE名称、Helvetica字体版本：
+
+```bash
+bash plotting/replot_helvetica.sh \
+  /absolute/path/output/run01 \
+  /absolute/path/output/RLDpred_BE_figures_helvetica \
+  /absolute/path/to/Helvetica_fonts
+```
+
+此命令读取旧运行的`config.snapshot.json`，在新输出目录创建独立绘图配置，设置新名称与Helvetica字体，并在其`figures/`下生成`Fig1_RLDpred-BE.pdf`和`FigS1_RLDpred-BE.pdf`。本项目已记录路径对应的完整命令见[服务器重画说明](docs/REPLOT_HELVETICA.zh-CN.md)。
 
 ## 全数据模型与预测
 

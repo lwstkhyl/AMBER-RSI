@@ -63,7 +63,7 @@
     "roundtrip_atol_pp": 0.001
   },
   "figures": {
-    "model_name": "LDpred-BE",
+    "model_name": "RLDpred-BE",
     "dpi": 240,
     "main_size_inches": [
       16.8,

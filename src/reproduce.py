@@ -147,7 +147,7 @@ def deployment_manifest(work):
     for task in plan['tasks']:
         weights = folder / 'members' / task['editor'] / task['member'] / 'weights.npz'
         models.append(dict(**task, weights=str(weights.relative_to(work)), weights_sha256=sha(weights)))
-    save_json(work / 'model_manifest.json', dict(model='LDpred-BE', n_members_per_editor=25,
+    save_json(work / 'model_manifest.json', dict(model='RLDpred-BE', n_members_per_editor=25,
         editors=plan['editors'], seed=plan['seed'], training_targets=plan['targets'], members=models,
         backbone_root=plan['pretrained_root'], backbone_files_sha256=plan['source_environment']['pretrained_files'],
         requires='25 original frozen SavedModels plus these 50 residual weight files and the saved input scalers',
@@ -167,7 +167,7 @@ def figure_audit(work):
     if any(work.resolve() not in p.parents for p in paths):
         raise ValueError('A figure is reading data from another run')
     files = sorted(p.name for p in (work / 'figures').iterdir() if p.is_file())
-    if files != ['Fig1_LDpred-BE.pdf', 'FigS1_LDpred-BE.pdf']:
+    if files != ['Fig1_RLDpred-BE.pdf', 'FigS1_RLDpred-BE.pdf']:
         raise ValueError('The figures directory must contain the two requested PDF files only')
     report = dict(n_main_metrics=32, max_metric_difference=difference, all_inputs_from_this_run=True,
         formats=['pdf'], pdf_files=files, layout_warnings=record['layout_warnings'])

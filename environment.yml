@@ -1,4 +1,4 @@
-name: ldpred-be
+name: rldpred-be
 channels:
   - conda-forge
 dependencies:

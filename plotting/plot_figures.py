@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Plot the approved LDpred-BE figures with the original DejaVu Sans typography."""
+"""Plot the approved RLDpred-BE figures with the original DejaVu Sans typography."""
 import argparse
 import hashlib
 import json
@@ -117,7 +117,8 @@ if args.figure in ['all', 'main']:
     fig = plt.figure(figsize=config['main_size_inches'], dpi=dpi, facecolor='white')
     for label, y in [('A', .997), ('B', .799), ('C', .547), ('D', .202)]:
         fig.text(.014, y, label, fontsize=21, fontweight='bold', va='top')
-    fig.text(.068, .991, f'{model_name}: a length- and distance-aware post-training framework', fontsize=13.2, va='top')
+    fig.text(.068, .991, f'{model_name}: an sgRNA length- and structural distance-aware post-training framework '
+        'for predicting the editing efficiency of specific base editors', fontsize=13.2, va='top')
     # Main a: add adapters to Dense2 preactivation; the source network is frozen.
     ax = fig.add_axes([.045, .806, .93, .168])
     ax.set(xlim=(0, 1.035), ylim=(0, 1))
@@ -254,10 +255,10 @@ if args.figure in ['all', 'main']:
             tick.set_ha('right')
         style(ax)
         difference_rows.extend([{'editor': editor, 'target_id': target, 'original_mse_pp2': table.loc[target, 'original'],
-            'ldpred_be_mse_pp2': table.loc[target, 'delta_nearest'], 'difference_pp2': value} for target, value in delta.items()])
+            'rldpred_be_mse_pp2': table.loc[target, 'delta_nearest'], 'difference_pp2': value} for target, value in delta.items()])
     fig.text(.5195, .0234, 'Target', ha='center', va='center', fontsize=11)
     pd.DataFrame(difference_rows).to_csv(plot_data_dir / 'main_d_differences.tsv', sep='\t', index=False)
-    save_figure(fig, 'Fig1_LDpred-BE')
+    save_figure(fig, 'Fig1_RLDpred-BE')
 
 if args.figure in ['all', 'supp']:
     geometry = read_table('structure_distances')
@@ -308,7 +309,7 @@ if args.figure in ['all', 'supp']:
         style(ax)
     fig.text(.519, .3919, 'Protospacer position', ha='center', va='center', fontsize=11)
     fig.legend(handles=[Line2D([], [], color=editor_colors[e], marker='o', lw=1.7,
-        label='TeABE (49–64)' if e == 'TeABE' else e) for e in ['ABE8e', 'TeABE', 'D699']],
+        label='TeABE ' if e == 'TeABE' else e) for e in ['ABE8e', 'TeABE', 'D699']],
         loc='center', bbox_to_anchor=(.53, .367), ncol=3, fontsize=11, columnspacing=3)
     # Supplement c: each target's position MSE and the supplied target-macro mean.
     ax = fig.add_axes([.079, .085, .205, .217])
@@ -346,7 +347,7 @@ if args.figure in ['all', 'supp']:
     fig.legend(handles=[Line2D([], [], color=observed_color, marker='o', lw=1.55, label='Observed'),
         Line2D([], [], color=colors['delta_nearest'], marker='D', lw=1.55, label='Predicted')], loc='center',
         bbox_to_anchor=(.653, .023), ncol=2, fontsize=11, columnspacing=2.5)
-    save_figure(fig, 'FigS1_LDpred-BE')
+    save_figure(fig, 'FigS1_RLDpred-BE')
 
 # A compact run record supports later integration with the training/summary workflow.
 record = {'figure': args.figure, 'config': config, 'dpi': dpi, 'formats': formats, 'inputs': input_hashes,
